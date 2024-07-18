@@ -1,11 +1,15 @@
 /* static/css/styles.css */
 
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 body { 
-    font-family: Arial, sans-serif; 
+    font-family: 'Roboto', Arial, sans-serif; 
     line-height: 1.6; 
     margin: 0; 
     padding: 0; 
     background-color: #f0f0f0;
+    color: #333;
 }
 
 nav {
@@ -39,6 +43,11 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
+    font-weight: 500;
+}
+
+nav ul li a:hover {
+    color: #4CAF50;
 }
 
 .container { 
@@ -46,25 +55,33 @@ nav ul li a {
     margin: 20px auto;
     background-color: #ffffff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 h1 { 
     text-align: center; 
     color: #333; 
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 form { 
     background: #f9f9f9; 
     padding: 20px; 
-    border-radius: 5px; 
+    border-radius: 10px; 
 }
 
 label { 
     display: block; 
     margin-bottom: 5px; 
-    font-weight: bold;
+    font-weight: 500;
 }
 
 input[type="text"], 
@@ -72,23 +89,30 @@ input[type="number"],
 select, 
 textarea {
     width: 100%; 
-    padding: 8px; 
+    padding: 12px; 
     margin-bottom: 15px; 
     border: 1px solid #ddd; 
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 14px;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
 }
 
 input[type="submit"] { 
     display: block; 
     width: 100%; 
-    padding: 10px; 
+    padding: 12px; 
     background: #4CAF50; 
     color: #fff; 
     border: none; 
     border-radius: 4px; 
     cursor: pointer; 
     font-size: 16px;
+    font-weight: 500;
+    transition: background 0.3s ease;
 }
 
 input[type="submit"]:hover { 
@@ -107,11 +131,13 @@ input[type="submit"]:hover {
     }
 
     nav ul {
+        flex-direction: column;
+        align-items: center;
         margin-top: 10px;
     }
 
     nav ul li {
         margin-left: 0;
-        margin-right: 20px;
+        margin-bottom: 10px;
     }
 }

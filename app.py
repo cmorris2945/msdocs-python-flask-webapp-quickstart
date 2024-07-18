@@ -1,5 +1,3 @@
-# app.py
-
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
@@ -26,7 +24,25 @@ class Patient(db.Model):
     immigration_status = db.Column(db.String(50))
     social_support = db.Column(db.String(50))
     doctor_preferences = db.Column(db.String(100))
-    social_support = db.Column(db.String(20))
+    consent = db.Column(db.String(3))
+    help_today = db.Column(db.String(100))
+    help_option = db.Column(db.String(100))
+    second_opinion = db.Column(db.String(3))
+    started_treatment = db.Column(db.String(3))
+    zip_code = db.Column(db.String(10))
+    insurance_name = db.Column(db.String(100))
+    gender = db.Column(db.String(6))
+    confirm_info = db.Column(db.String(3))
+    schedule_appointment = db.Column(db.String(3))
+    schedule_transportation = db.Column(db.String(3))
+    social_support_options = db.Column(db.String(100))
+    physician_experience = db.Column(db.String(10))
+    treatment_cases = db.Column(db.String(10))
+    patient_satisfaction = db.Column(db.String(10))
+    appointment_wait_time = db.Column(db.String(10))
+    proximity = db.Column(db.String(10))
+    treatment_approach = db.Column(db.String(50))
+    qualities = db.Column(db.String(100))
 
 # Route for the main page
 @app.route('/', methods=['GET', 'POST'])
@@ -34,20 +50,38 @@ def index():
     if request.method == 'POST':
         # Process form submission
         new_patient = Patient(
-        name=request.form['name'],
-        age=request.form['age'],
-        stage=request.form['stage'],
-        previous_treatments=request.form['previous_treatments'],
-        preferred_language=request.form['preferred_language'],
-        location=request.form['location'],
-        family_history=request.form['family_history'],
-        genetic_testing=request.form['genetic_testing'],
-        additional_concerns=request.form['additional_concerns'],
-        religiosity=request.form['religiosity'],
-        immigration_status=request.form['immigration_status'],
-        social_support=request.form['social_support'],
-        doctor_preferences=request.form['doctor_preferences']
-
+            name=request.form['name'],
+            age=request.form['age'],
+            stage=request.form['stage'],
+            previous_treatments=request.form['previous_treatments'],
+            preferred_language=request.form['preferred_language'],
+            location=request.form['location'],
+            family_history=request.form['family_history'],
+            genetic_testing=request.form['genetic_testing'],
+            additional_concerns=request.form['additional_concerns'],
+            religiosity=request.form['religiosity'],
+            immigration_status=request.form['immigration_status'],
+            social_support=request.form['social_support'],
+            doctor_preferences=request.form['doctor_preferences'],
+            consent=request.form.get('consent'),
+            help_today=request.form.get('help_today'),
+            help_option=request.form.get('help_option'),
+            second_opinion=request.form.get('second_opinion'),
+            started_treatment=request.form.get('started_treatment'),
+            zip_code=request.form.get('zip_code'),
+            insurance_name=request.form.get('insurance_name'),
+            gender=request.form.get('gender'),
+            confirm_info=request.form.get('confirm_info'),
+            schedule_appointment=request.form.get('schedule_appointment'),
+            schedule_transportation=request.form.get('schedule_transportation'),
+            social_support_options=request.form.get('social_support'),
+            physician_experience=request.form.get('physician_experience'),
+            treatment_cases=request.form.get('treatment_cases'),
+            patient_satisfaction=request.form.get('patient_satisfaction'),
+            appointment_wait_time=request.form.get('appointment_wait_time'),
+            proximity=request.form.get('proximity'),
+            treatment_approach=request.form.get('treatment_approach'),
+            qualities=request.form.getlist('qualities')
         )
         db.session.add(new_patient)
         db.session.commit()
